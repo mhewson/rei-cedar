@@ -56,20 +56,6 @@
         ref="icon"
       />
     </div>
-    <transition-group
-      class="cdr-input-messages"
-      :id="messagesId"
-      ref="messages"
-      name="cdr-animated-errors"
-      tag="div"
-    >
-      <div
-        :class="messageClass"
-        ref="error"
-        v-for="error in errors"
-        :error="error"
-        :key="error">{{ error }}</div>
-    </transition-group>
   </div>
 </template>
 
@@ -212,13 +198,6 @@ export default {
         'cdr-input-wrap__icon--error': this.isErr,
         'cdr-input-wrap__icon--warn': this.isWarn,
         'cdr-input-wrap__icon--valid': this.isValid,
-      };
-    },
-    messageClass() {
-      return {
-        'cdr-input-messages__notification': true,
-        'cdr-input-messages__notification--error': this.isErr,
-        'cdr-input-messages__notification--warn': this.isWarn,
       };
     },
     getIcon() {
