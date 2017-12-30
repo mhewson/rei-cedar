@@ -56,12 +56,32 @@
         ref="icon"
       />
     </div>
+    <transition-group
+      class="cdr-input-messages"
+      :id="messagesId"
+      ref="messages"
+      name="cdr-animated-errors"
+      tag="div"
+    >
+      <div
+        :class="messageClass"
+        ref="error"
+        v-for="error in errors"
+        :error="error"
+        :key="error">{{ error }}</div>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import debounce from 'Src/utils/debounce';
 import modifier from 'Src/mixins/modifier';
+/* eslint-disable */
+// import/no-webpack-loader-syntax & import/no-unresolved
+import checkIcon from '!raw-loader!Assets/icons/rei/cdr-check-lg.svg';
+import errorIcon from '!raw-loader!Assets/icons/rei/cdr-x-circ-fill.svg';
+import warningIcon from '!raw-loader!Assets/icons/rei/cdr-warning-tri.svg';
+/* eslint-enable */
 
 export default {
   name: 'CdrInput',
@@ -96,6 +116,11 @@ export default {
      * Error message to be displayed when `pattern` validation fails.
     */
     patternError: String,
+    /**
+     * Enables icon feedback as part of validation
+     * for valid, warn, and error states.
+    */
+    feedback: Boolean,
     /**
      * Input type. NOTE: This component is meant for text style inputs.
      * Other input types (checkbox, radio) have their own components.
@@ -162,6 +187,7 @@ export default {
     labelClass() {
       return {
         'cdr-label': true,
+        'cdr-label--error': this.isErr,
         'cdr-label--disabled': this.disabled,
       };
     },
@@ -169,6 +195,8 @@ export default {
       return {
         'cdr-input': true,
         'cdr-input--multiline': this.multiLine,
+        'cdr-input--error': this.isErr,
+        'cdr-input--warn': this.isWarn,
         'cdr-input--preicon': this.$slots.preicon,
       };
     },
@@ -181,9 +209,31 @@ export default {
     validationIconClass() {
       return {
         'cdr-input-wrap__icon': true,
+        'cdr-input-wrap__icon--error': this.isErr,
+        'cdr-input-wrap__icon--warn': this.isWarn,
+        'cdr-input-wrap__icon--valid': this.isValid,
       };
     },
-  
+    messageClass() {
+      return {
+        'cdr-input-messages__notification': true,
+        'cdr-input-messages__notification--error': this.isErr,
+        'cdr-input-messages__notification--warn': this.isWarn,
+      };
+    },
+    getIcon() {
+      let icon = '';
+
+      if (this.isErr) {
+        icon = errorIcon;
+      } else if (this.isValid) {
+        icon = checkIcon;
+      } else if (this.isWarn) {
+        icon = warningIcon;
+      }
+
+      return icon;
+    },
     // Check if debounce is enabled, defined, or default
     debounceVal() {
       if (this.debounce === false) {
