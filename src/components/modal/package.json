@@ -1,0 +1,23 @@
+{
+  "name": "@rei-co-op/cedar-modal",
+  "version": "0.0.1",
+  "description": "REI Cedar Style Framework - Vue Component for Modal",
+  "homepage": "https://rei.github.io/rei-cedar/#cdr-modal",
+  "license": "ISC",
+  "author": "REI Software Engineering",
+  "private": false,
+  "main": "dist/cdr-modal.js",
+  "style": "dist/cdr-modal.css",
+  "config": {
+    "buildConfig": "webpack.dist.conf",
+    "component": "modal",
+    "tagName": "modal"
+  },
+  "scripts": {
+    "build": "node ../../../build/build.js"
+  },
+  "peerDependencies": {
+    "@rei-co-op/cedar-core-style": "^0.0.2",
+    "vue": "^2.5.3"
+  }
+}
