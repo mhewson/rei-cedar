@@ -13,7 +13,7 @@ import cdrRadio from './radio/cdrRadio';
 import cdrRating from './rating/cdrRating';
 import cdrRow from './row/cdrRow';
 import cdrSelect from './select/cdrSelect';
-import cdrModal from './modal/cdrModal';
+import cdrModal from './modal/CdrModal';
 
 export default {
   cdrA,

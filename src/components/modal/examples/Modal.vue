@@ -1,5 +1,5 @@
 <template>
-    <cdr-modal></cdr-modal>
+  <cdr-modal/>
 </template>
 
 <script>
@@ -12,5 +12,4 @@ export default {
 </script>
 
 <style>
-    
 </style>
