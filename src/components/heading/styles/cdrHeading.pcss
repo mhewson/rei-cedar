@@ -1,15 +1,85 @@
 /* ==========================================================================
   # cdrHeading
-  
-  All values should map to variables in
-  vars/cdrHeading.vars.pcss
-  in order to allow for theming
 
   TOC:
 
     :Base Styles
+    ::subheading
+    ::display
+    ::Heading
+    :::large
+    :::medium
+    :::small
 ========================================================================== */
+.cdr-text {
+  &--subheading {
+    @include spruce-dsp-20;
+  }
 
-/*
-.cdr-heading {}
-*/
+  &--display {
+    @include spruce-dsp-60;
+  }
+
+  &--heading-small {
+    @include spruce-dsp-30;
+  }
+
+  &--heading-medium {
+    @include spruce-dsp-40;
+  }
+
+  &--heading-large {
+    @include spruce-dsp-40;
+  }
+
+  /* Break points
+  ========================================================================== */
+  
+  /* Small */
+  @media (--sm-mq) {
+    &--display {
+      @include spruce-dsp-70;
+    }
+
+    &--heading-large {
+      @include spruce-dsp-50;
+    }
+  }
+
+  /* Large */
+  @media (--lg-mq) {
+    &--display {
+      @include spruce-dsp-80;
+    }
+
+    &--heading-small {
+      @include spruce-dsp-40;
+    }
+
+    &--heading-medium {
+      @include spruce-dsp-50;
+    }
+
+    &--heading-large {
+      @include spruce-dsp-70;
+    }
+  }
+
+  &--disable-responsive {
+    &.cdr-text--display {
+      @include spruce-dsp-70;
+    }
+
+    &.cdr-text--heading-small {
+      @include spruce-dsp-20;
+    }
+
+    &.cdr-text--heading-medium {
+      @include spruce-dsp-30;
+    }
+
+    &.cdr-text--heading-large {
+      @include spruce-dsp-40;
+    }
+  }
+}
