@@ -2,11 +2,21 @@
 * Typography utility classes
 *
 * TOC:
-* base text styles
+*   :base text styles
+*     :body-paragraph
 */
 
 .cdr-text {
   margin: 0;
+
+  &--body-paragraph {
+    max-width: 634px;
+    @include spruce-bdy-30();
+
+    & + & {
+      margin-top: $space-lg;
+    }
+  }
 }
 
 .cdr-label {
